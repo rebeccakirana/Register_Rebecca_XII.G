@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Register Rebecca Kirana</title>
+</head>
+<body>
+    <h2>Rebecca Kirana Register</h2>
+    <p>Kelas: XII-G</p>
+
+    <form id="RegisterForm" action="">
+        <input required type="text" id="Nama" placeholder="Nama Lengkap Anda"/> <br>
+        <input required type="email" id="Email" placeholder="Email Anda"/> <br>
+        <input required type="password" id="Password" placeholder="Password Anda"/> <br>
+        <input required type="number" id="NomorHP" placeholder="Nomor HP"/> <br>
+        <input required type="date" id="TanggalLahir" placeholder="Tanggal Lahir Anda" /> <br>
+        <select required id="JenisKelamin">
+            <option value="">Pilih Jenis Kelamin</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+        </select><br><br>
+        <button type="submit" style="color: blue">Submit</button>
+    </form>
+
+    <br>
+
+    <table id="dataTable" border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Tanggal Lahir</th>
+                <th>Jenis Kelamin</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.getElementById("RegisterForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const nama = document.getElementById("Nama").value;
+            const email = document.getElementById("Email").value;
+            const tanggalLahir = document.getElementById("TanggalLahir").value;
+            const jenisKelamin = document.getElementById("JenisKelamin").value;
+
+            const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            newRow.insertCell(0).textContent = nama;
+            newRow.insertCell(1).textContent = email;
+            newRow.insertCell(2).textContent = tanggalLahir;
+            newRow.insertCell(3).textContent = jenisKelamin;
+
+            document.getElementById("RegisterForm").reset();
+        });
+    </script>
+</body>
+</html>
