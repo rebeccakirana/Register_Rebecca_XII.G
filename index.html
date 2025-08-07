@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Pendaftaran</title>
+  <link rel="stylesheet" href="css/style.css"
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Form Pendaftaran</h2>
+    <form id="formPendaftaran">
+      <div class="form-group">
+        <label for="nama_lengkap">Nama Lengkap</label>
+        <input type="text" id="nama_lengkap" required>
+      </div>
+
+      <div class="form-group">
+        <label for="nama_panggilan">Nama Panggilan</label>
+        <input type="text" id="nama_panggilan" required>
+      </div>
+
+      <div class="form-group">
+        <label for="nomor_hp">Nomor HP</label>
+        <input type="text" id="nomor_hp" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <div class="error" id="emailError" style="display: none;">Format email tidak valid.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <div class="form-group">
+        <label>Jenis Kelamin</label>
+        <input type="radio" id="laki-laki" name="jenis_kelamin" value="Laki-laki" required>
+        <label for="laki-laki" style="display:inline;">Laki-laki</label>
+        <input type="radio" id="perempuan" name="jenis_kelamin" value="Perempuan" required>
+        <label for="perempuan" style="display:inline;">Perempuan</label>
+      </div>
+
+      <div class="form-group">
+        <input type="checkbox" id="syarat" required>
+        <label for="syarat">Saya menyetujui syarat dan ketentuan yang berlaku</label>
+      </div>
+
+      <button type="submit">Buat Akun</button>
+    </form>
+  </div>
+
+  <table id="tabelData" style="display:none;">
+    <thead>
+      <tr>
+        <th>Nama Lengkap</th>
+        <th>Nama Panggilan</th>
+        <th>Nomor HP</th>
+        <th>Email</th>
+        <th>Jenis Kelamin</th>
+      </tr>
+    </thead>
+    <tbody id="isiTabel">
+    </tbody>
+  </table>
+  <script src="js/script.js"</script>
+  </body>
+  </html>
