@@ -1,44 +1,50 @@
-<script>
-    const form = document.getElementById("formPendaftaran");
-    const tabel = document.getElementById("tabelData");
-    const isiTabel = document.getElementById("isiTabel");
-    const emailInput = document.getElementById("email");
-    const emailError = document.getElementById("emailError");
+document.getElementById("formPendaftaran").addEventListener("submit", function(e) {
+  e.preventDefault(); // Mencegah refresh halaman
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
+  // Ambil nilai dari input
+  const nama_lengkap = document.getElementById("nama_lengkap").value;
+  const nama_panggilan = document.getElementById("nama_panggilan").value;
+  const nomor_hp = document.getElementById("nomor_hp").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const jenis_kelamin = document.querySelector('input[name="jenis_kelamin"]:checked').value;
 
-      // Validasi Email
-      const email = emailInput.value;
-      const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  // Validasi email sederhana
+  const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  if (!email.match(emailPattern)) {
+    document.getElementById("emailError").style.display = "block";
+    return;
+  } else {
+    document.getElementById("emailError").style.display = "none";
+  }
 
-      if (!emailRegex.test(email)) {
-        emailError.style.display = "block";
-        return;
-      } else {
-        emailError.style.display = "none";
-      }
+  const user = {
+    nama_lengkap: nama_lengkap,
+    nama_panggilan: nama_panggilan,
+    nomor_hp: nomor_hp,
+    email: email,
+    password: password,
+    jenis_kelamin: jenis_kelamin
+  };
 
-      // Ambil data dari form
-      const namaLengkap = document.getElementById("nama_lengkap").value;
-      const namaPanggilan = document.getElementById("nama_panggilan").value;
-      const nomorHp = document.getElementById("nomor_hp").value;
-      const jenisKelamin = document.querySelector('input[name="jenis_kelamin"]:checked').value;
+  // Simpan ke localStorage
+  localStorage.setItem(email, JSON.stringify(user));
 
-      // Buat baris tabel baru
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${namaLengkap}</td>
-        <td>${namaPanggilan}</td>
-        <td>${nomorHp}</td>
-        <td>${email}</td>
-        <td>${jenisKelamin}</td>
-      `;
+  alert("Pendaftaran berhasil!");
 
-      isiTabel.appendChild(row);
-      tabel.style.display = "table";
+  // Tampilkan tabel (kalau sebelumnya hidden)
+  document.getElementById("tabelData").style.display = "table";
 
-      // Reset form
-      form.reset();
-    });
-  </script>
+  // Masukkan data ke tabel
+  const table = document.getElementById("isiTabel");
+  const newRow = table.insertRow();
+
+  newRow.insertCell(0).textContent = nama_lengkap;
+  newRow.insertCell(1).textContent = nama_panggilan;
+  newRow.insertCell(2).textContent = nomor_hp;
+  newRow.insertCell(3).textContent = email;
+  newRow.insertCell(4).textContent = jenis_kelamin;
+
+  // Reset form setelah submit
+  document.getElementById("formPendaftaran").reset();
+});
